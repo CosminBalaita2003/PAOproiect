@@ -58,6 +58,7 @@ public class Main{
                 String optionActor = scanner.nextLine();
                 if (Integer.parseInt(optionActor) == 1) {
                     actorController.addActor();
+
                 }
                 if (Integer.parseInt(optionActor) == 2) {
                     System.out.println("Insert actor id: ");
@@ -259,45 +260,53 @@ public class Main{
             if (Integer.parseInt(option) == 9) {
                 System.out.println("Enter the name of the table: ");
                 String table = scanner.nextLine();
-                System.out.println("Enter the action: ");
+                System.out.println("Enter the action (create, insert, select, delete, update, drop): ");
                 String action = scanner.nextLine();
-                if (action.equals("create")) {
-                    dbContext.CreateTable(con, table);
+                switch (action.toLowerCase()) {
+                    case "create":
+                        dbContext.CreateTable(con, table);
+                        break;
+                    case "insert":
+                        //print the columns
+                        dbContext.PrintColumns(con, table);
+                        System.out.println("Enter the values: ");
+                        String values = scanner.nextLine();
+                        // Split values by comma and remove quotes
+                        String[] valueArray = values.split(",");
+                        for (int i = 0; i < valueArray.length; i++) {
+                            valueArray[i] = valueArray[i].trim().replace("'", "").replace("\"", "");
+                        }
+                        dbContext.InsertValues(con, table, valueArray);
+                        break;
+                    case "select":
+                        dbContext.Select(con, table);
+                        break;
+                    case "delete":
+                        System.out.println("Enter the condition: ");
+                        String deleteCondition = scanner.nextLine();
+                        dbContext.DeleteValues(con, table, deleteCondition);
+                        break;
+                    case "update":
+                        System.out.println("Enter the column to update: ");
+                        String column = scanner.nextLine();
+                        System.out.println("Enter the new value: ");
+                        String updateValue = scanner.nextLine();
+                        System.out.println("Enter the condition: ");
+                        String updateCondition = scanner.nextLine();
+                        dbContext.UpdateValues(con, table, column, updateValue, updateCondition);
+                        break;
+                    case "drop":
+                        dbContext.DropTable(con, table);
+                        break;
+                    default:
+                        System.out.println("Invalid action.");
+                        break;
                 }
-                else if (action.equals("insert"))
-                {
-                    System.out.println("Enter the values: ");
-                    String values = scanner.nextLine();
-                    dbContext.InsertValues(con, table, values);
-                }
-                else if (action.equals("select"))
-                {
-                    dbContext.Select(con, table);
-                }
-                else if (action.equals("delete"))
-                {
-                    System.out.println("Enter the condition: ");
-                    String condition = scanner.nextLine();
-                    dbContext.DeleteValues(con, table, condition);
-                }
-                else if (action.equals("update"))
-                {
-                    System.out.println("Enter the values: ");
-                    String values = scanner.nextLine();
-                    System.out.println("Enter the condition: ");
-                    String condition = scanner.nextLine();
-                    System.out.println("Enter the column: ");
-                    String column = scanner.nextLine();
-                    dbContext.UpdateValues(con, table, column, values, condition);
-                }
-                else if (action.equals("drop"))
-                {
-                    dbContext.DropTable(con, table);
-                }
+            }
 
 
 
-        }
+
     }while (Integer.parseInt(option) != 0);
         scanner.close();
     }

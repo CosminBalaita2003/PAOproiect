@@ -2,10 +2,7 @@ package database;
 
 import services.AuditService;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 
 public class DbContext {
@@ -46,7 +43,7 @@ public class DbContext {
                 System.out.println("Table created successfully");
 
             } else if (tableName.equalsIgnoreCase("movie")) {
-                String query = "CREATE TABLE IF NOT EXISTS movie (movieid SERIAL PRIMARY KEY, title VARCHAR(50), release_date DATE, duration INT, genre VARCHAR(50), directorid INT, FOREIGN KEY (directorid) REFERENCES director(directorid))";
+                String query = "CREATE TABLE IF NOT EXISTS movie (movieid SERIAL PRIMARY KEY, title VARCHAR(50), release_date DATE, duration INT, genre VARCHAR(50))";
                 con.createStatement().execute(query);
                 System.out.println("Table created successfully");
 
@@ -58,21 +55,7 @@ public class DbContext {
                 con.createStatement().execute(query);
                 System.out.println("Table created successfully");
             }
-            else if (tableName.equalsIgnoreCase("theater")) {
-                String query = "CREATE TABLE IF NOT EXISTS theater (theaterid SERIAL PRIMARY KEY, no_seats INT)";
-                con.createStatement().execute(query);
-                System.out.println("Table created successfully");
-            }
-            else if (tableName.equalsIgnoreCase("ticket")){
-                String query = "CREATE TABLE IF NOT EXISTS ticket (ticketid SERIAL PRIMARY KEY, price INT, movieid INT, theaterid INT, FOREIGN KEY (movieid) REFERENCES movie(movieid), FOREIGN KEY (theaterid) REFERENCES theater(theaterid))";
-                con.createStatement().execute(query);
-                System.out.println("Table created successfully");
-            }
-            else if (tableName.equalsIgnoreCase("client")){
-                String query = "CREATE TABLE IF NOT EXISTS client (clientid SERIAL PRIMARY KEY, firstname VARCHAR(50), lastname VARCHAR(50), email VARCHAR(50), phone VARCHAR(50))";
-                con.createStatement().execute(query);
-                System.out.println("Table created successfully");
-            }
+
 
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
@@ -92,39 +75,70 @@ public class DbContext {
 
 
     }
-    public void InsertValues(Connection con, String tableName, String values)
-    {
-        try{
-            String query = "INSERT INTO " + tableName + " VALUES (" + values + ")";
-            con.createStatement().execute(query);
-            System.out.println("Values inserted successfully");
+    public void InsertValues(Connection con, String tableName, String[] values) {
+        String query = "";
+        switch (tableName.toLowerCase()) {
+            case "actor":
+                query = "INSERT INTO actor (firstname, lastname, birthdate, alive) VALUES (?, ?, ?, ?)";
+                break;
+            case "director":
+                query = "INSERT INTO director (firstname, lastname, birthdate, alive) VALUES (?, ?, ?, ?)";
+                break;
+            case "movie":
+                query = "INSERT INTO movie (title, release_date, duration, genre) VALUES (?, ?, ?, ?)";
+                break;
+            case "genre":
+                query = "INSERT INTO genre (name) VALUES (?)";
+                break;
+            default:
+                System.out.println("Invalid table name");
+                return;
         }
-        catch (SQLException e){
-            System.out.println("Error: " + e.getMessage());
-        }
-        try{
+
+        try (PreparedStatement pstmt = con.prepareStatement(query)) {
+            for (int i = 0; i < values.length; i++) {
+                pstmt.setString(i + 1, values[i]);
+            }
+            pstmt.executeUpdate();
+            System.out.println("Values inserted successfully into " + tableName);
             auditService.addLog("Insert values into " + tableName);
-        } catch (Exception e){
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
 
-    public void UpdateValues(Connection con, String tableName, String column, String value, String condition)
-    {
-        try{
-            String query = "UPDATE " + tableName + " SET " + column + " = " + value + " WHERE " + condition;
-            con.createStatement().execute(query);
+    public void UpdateValues(Connection con, String tableName, String column, String value, String condition) {
+
+
+
+        String query = "UPDATE " + tableName + " SET " + column + " = ? WHERE " + condition;
+        try (PreparedStatement pstmt = con.prepareStatement(query)) {
+            // Check if the value can be parsed as an integer
+            try {
+                int intValue = Integer.parseInt(value);
+                pstmt.setInt(1, intValue);
+            } catch (NumberFormatException e1) {
+                // Check if the value can be parsed as a boolean
+                if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false")) {
+                    boolean boolValue = Boolean.parseBoolean(value);
+                    pstmt.setBoolean(1, boolValue);
+                } else {
+                    // Otherwise, treat it as a string
+                    pstmt.setString(1, value);
+                }
+            }
+            pstmt.executeUpdate();
             System.out.println("Values updated successfully");
-        }
-        catch (SQLException e){
-            System.out.println("Error: " + e.getMessage());
-        }
-        try{
             auditService.addLog("Update values in " + tableName);
-        } catch (Exception e){
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
 
     public void Select(Connection con, String tableName)
     {
@@ -145,7 +159,6 @@ public class DbContext {
                     System.out.println("Release Date: " + input.getDate("release_date"));
                     System.out.println("Duration: " + input.getInt("duration"));
                     System.out.println("Genre: " + input.getString("genre"));
-                    System.out.println("Director ID: " + input.getInt("directorid"));
                 }  else if (tableName.equalsIgnoreCase("genre")) {
                     System.out.println("Genre ID: " + input.getInt("genreid"));
                     System.out.println("Name: " + input.getString("name"));
@@ -241,6 +254,21 @@ public class DbContext {
             while (input.next()) {
                 System.out.println(input.getString("Database"));
             }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public void PrintColumns(Connection con, String table) {
+        try {
+            String query = "SELECT * FROM " + table;
+            ResultSet input = con.createStatement().executeQuery(query);
+            ResultSetMetaData rsmd = input.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+            for (int i = 1; i <= columnsNumber; i++) {
+                System.out.print(rsmd.getColumnName(i) + " ");
+            }
+            System.out.println();
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }

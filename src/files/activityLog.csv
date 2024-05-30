@@ -1,2 +1,38 @@
 Create table actor,1716981590674
 Create table actor,1716981590683
+Insert values into actor,1717078248405
+Insert values into actor,1717078682981
+Select values from actor,1717078890479
+Insert values into actor,1717078948167
+Insert values into actor,1717079235370
+Insert values into actor,1717079291080
+Insert values into actor,1717080044856
+Select values from actor,1717080054515
+Create table movie,1717080171267
+Create table movie,1717080171277
+Create table genre,1717080199734
+Create table genre,1717080199741
+Create table movie,1717080211874
+Create table movie,1717080211874
+Create table director,1717080227251
+Create table director,1717080227257
+Create table movie,1717080238183
+Create table movie,1717080238184
+Create table movie,1717080323894
+Create table movie,1717080323903
+Insert values into director,1717080460798
+Create table movie,1717080469641
+Create table movie,1717080469641
+Create table movie,1717080537686
+Create table movie,1717080537692
+Create table movie,1717080581420
+Create table movie,1717080581425
+Insert values into movie,1717080928349
+Select values from movie,1717080938160
+Select values from movie,1717080986069
+Update values in movie,1717081050246
+Update values in movie,1717081096775
+Update values in movie,1717081291136
+Update values in movie,1717081512685
+Select values from movie,1717081521998
+Insert values into movie,1717081784367
