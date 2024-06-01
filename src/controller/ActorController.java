@@ -71,8 +71,10 @@ public class ActorController {
         return true;
     }
 
-    public boolean deleteActor(int ind){
-        return actorService.deleteActor(ind);
+    public ArrayList<Actor> deleteActor(int ind){
+        ArrayList<Actor> actors = actorService.deleteActor(ind);
+        System.out.println("Actor deleted");
+        return actors;
     }
 
 

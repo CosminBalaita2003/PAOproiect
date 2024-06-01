@@ -3,6 +3,7 @@ package services;
 import Repo.TicketRepo;
 import models.Ticket;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TicketService {
@@ -57,7 +58,7 @@ public class TicketService {
         return false;
     }
 
-    public boolean deleteTicket(int ticketId) {
+    public ArrayList<Ticket> deleteTicket(int ticketId) {
         return ticketRepo.deleteTicket(ticketId);
     }
 

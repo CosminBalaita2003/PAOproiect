@@ -28,12 +28,16 @@ public class MovieRopo {
         return movies;
     }
 
-    public boolean deleteMovie(int movieId) {
-        if (movieId < movies.size()) {
-            movies.remove(movieId);
-            return true;
+    public ArrayList<Movie> deleteMovie(int movieId) {
+        for (Movie movie : movies){
+            if (movie.getMovieId() == movieId) {
+                movies.remove(movieId);
+                return movies;
+            }
+
         }
-        return false;
+        return null;
+
     }
 
     public boolean updateRating(Movie movie, String rating) {

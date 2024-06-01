@@ -3,6 +3,8 @@ package controller;
 import models.Client;
 import services.ClientService;
 
+import java.util.ArrayList;
+
 public class ClientController {
 
     private static ClientController instance;
@@ -30,6 +32,9 @@ public class ClientController {
     }
 
     public Client getClient(int clientId){
+        System.out.println("Client found");
+        Client client = clientService.getClient(clientId);
+        System.out.println(client.getName() + " " + client.getLastName() + " " + client.getEmail() + " " + client.getPhone());
         return clientService.getClient(clientId);
     }
 
@@ -37,8 +42,10 @@ public class ClientController {
         clientService.getAllClients();
     }
 
-    public boolean deleteClient(int clientId){
-        return clientService.deleteClient(clientId);
+    public ArrayList<Client> deleteClient(int clientId){
+        ArrayList<Client> clients = clientService.deleteClient(clientId);
+        System.out.println("Client deleted");
+        return clients;
     }
 
 

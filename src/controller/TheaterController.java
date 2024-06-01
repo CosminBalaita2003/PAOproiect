@@ -1,6 +1,9 @@
 package controller;
 
+import models.Theater;
 import services.TheaterService;
+
+import java.util.ArrayList;
 
 public class TheaterController {
 
@@ -35,8 +38,10 @@ public static TheaterController getInstance() {
         theaterService.getAllTheaters();
     }
 
-    public void deleteTheater(int theatreId) {
-        theaterService.deleteTheater(theatreId);
+    public ArrayList<Theater> deleteTheater(int theatreId) {
+        ArrayList<Theater> theaters = theaterService.deleteTheater(theatreId);
+        System.out.println("Theatre deleted");
+        return theaters;
     }
 
 

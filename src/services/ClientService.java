@@ -2,6 +2,7 @@ package services;
 
 import Repo.ClientRepo;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import models.Client;
@@ -51,10 +52,9 @@ public class ClientService {
         }
     }
 
-    public boolean deleteClient(int clientId) {
+    public ArrayList<Client> deleteClient(int clientId) {
         return clientRepo.deleteClient(clientId);
     }
-
 
 
 }

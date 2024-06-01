@@ -3,6 +3,9 @@ package controller;
 import models.Director;
 import services.DirectorService;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class DirectorController {
 
     private static DirectorController instance;
@@ -36,8 +39,10 @@ public class DirectorController {
         directorService.getAllDirectors();
     }
 
-    public void deleteDirector(int directorId){
-        directorService.deleteDirector(directorId);
+    public ArrayList<Director> deleteDirector(int directorId){
+        ArrayList<Director> directors = directorService.deleteDirector(directorId);
+        System.out.println("Director deleted");
+        return directors;
     }
 
     public void updateStatus(int id, boolean alive){

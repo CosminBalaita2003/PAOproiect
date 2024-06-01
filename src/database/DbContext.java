@@ -215,6 +215,79 @@ public class DbContext {
         }
     }
 
+    public void ListTables(Connection con)
+    {
+        try{
+            String query = "SHOW TABLES";
+            ResultSet input = con.createStatement().executeQuery(query);
+            while (input.next()){
+                System.out.println(input.getString("Tables_in_cinema"));
+            }
+        }
+        catch (SQLException e){
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public void selectOrderedTable(Connection con, String tableName)
+    {
+        ResultSet input = null;
+        try{
+            if (tableName.equalsIgnoreCase("actor"))
+            {
+                String query = "SELECT * FROM actor ORDER BY firstname";
+                input = con.createStatement().executeQuery(query);
+                while (input.next())
+                {
+                    System.out.println("Actor ID: " + input.getInt("actorid"));
+                    System.out.println("First Name: " + input.getString("firstname"));
+                    System.out.println("Last Name: " + input.getString("lastname"));
+                    System.out.println("Birth Date: " + input.getDate("birthdate"));
+                    System.out.println("Alive: " + input.getBoolean("alive"));
+
+            }
+            }
+            else if (tableName.equalsIgnoreCase("movie"))
+            {
+                String query = "SELECT * FROM movie ORDER BY title";
+                input = con.createStatement().executeQuery(query);
+                while (input.next())
+                {
+                    System.out.println("Movie ID: " + input.getInt("movieid"));
+                    System.out.println("Title: " + input.getString("title"));
+                    System.out.println("Release Date: " + input.getDate("release_date"));
+                    System.out.println("Duration: " + input.getInt("duration"));
+                    System.out.println("Genre: " + input.getString("genre"));
+                }
+            }
+            else if (tableName.equalsIgnoreCase("genre"))
+            {
+                String query = "SELECT * FROM genre ORDER BY name";
+                input = con.createStatement().executeQuery(query);
+                while (input.next())
+                {
+                    System.out.println("Genre ID: " + input.getInt("genreid"));
+                    System.out.println("Name: " + input.getString("name"));
+                }
+            }
+            else if (tableName.equalsIgnoreCase("director"))
+            {
+                String query = "SELECT * FROM director ORDER BY firstname";
+                input = con.createStatement().executeQuery(query);
+                while (input.next())
+                {
+                    System.out.println("Director ID: " + input.getInt("directorid"));
+                    System.out.println("First Name: " + input.getString("firstname"));
+                    System.out.println("Last Name: " + input.getString("lastname"));
+                    System.out.println("Birth Date: " + input.getDate("birthdate"));
+                    System.out.println("Alive: " + input.getBoolean("alive"));
+                }
+            }
+        }catch (SQLException e){
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
     public void createDatabase(Connection connection) {
         try {
             String query = "CREATE DATABASE IF NOT EXISTS cinema";
@@ -273,5 +346,7 @@ public class DbContext {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
+
 }
 

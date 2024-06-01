@@ -3,6 +3,7 @@ package services;
 import Repo.TheaterRepo;
 import models.Theater;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TheaterService {
@@ -39,7 +40,7 @@ public class TheaterService {
         }
     }
 
-    public boolean deleteTheater(int theaterId){
+    public ArrayList<Theater> deleteTheater(int theaterId){
         return theaterRepo.deleteTheater(theaterId);
     }
 

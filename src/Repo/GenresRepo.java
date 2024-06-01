@@ -26,12 +26,15 @@ public class GenresRepo {
         return genres;
     }
 
-    public boolean deleteGenre(int genreId) {
-        if (genreId < genres.size()) {
-            genres.remove(genreId);
-            return true;
+    public ArrayList<Genres> deleteGenre(int genreId) {
+        for (Genres genre : genres){
+            if (genre.getGenreId() == genreId) {
+                genres.remove(genreId);
+                return genres;
+            }
+
         }
-        return false;
+        return null;
     }
 
 

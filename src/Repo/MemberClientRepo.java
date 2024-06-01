@@ -16,8 +16,10 @@ public class MemberClientRepo {
 
     public MemberClient getMemberClient(int memberClientId) {
         System.out.println(memberClientId + " " + memberClients.size());
-        if (memberClientId < memberClients.size()) {
-            return memberClients.get(memberClientId);
+        for (MemberClient memberClient : memberClients) {
+            if (memberClient.getClientId() == memberClientId) {
+                return memberClient;
+            }
         }
         return null;
     }
@@ -26,12 +28,16 @@ public class MemberClientRepo {
         return memberClients;
     }
 
-    public boolean deleteMemberClient(int memberClientId) {
-        if (memberClientId < memberClients.size()) {
-            memberClients.remove(memberClientId);
-            return true;
+    public ArrayList<MemberClient> deleteMemberClient(int memberClientId) {
+        for (MemberClient memberClient : memberClients){
+            if (memberClient.getClientId() == memberClientId) {
+                memberClients.remove(memberClientId);
+                return memberClients;
+            }
+
         }
-        return false;
+        return null;
+
     }
 
     public boolean updateNoPoints(MemberClient memberClient, int noPoints) {

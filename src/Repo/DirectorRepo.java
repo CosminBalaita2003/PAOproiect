@@ -31,12 +31,15 @@ public class DirectorRepo {
         return true;
     }
 
-    public boolean deleteDirector(int directorId) {
-        if (directorId < directors.size()) {
-            directors.remove(directorId);
-            return true;
+    public ArrayList<Director> deleteDirector(int directorId) {
+        for (Director director : directors){
+            if (director.getDirectorId() == directorId) {
+                directors.remove(directorId);
+                return directors;
+            }
+
         }
-        return false;
+        return null;
     }
 
 

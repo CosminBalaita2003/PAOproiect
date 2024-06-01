@@ -74,6 +74,7 @@ public static void main(String[] args) {
                 System.out.println("Insert actor id: ");
                 String actorId = scanner.nextLine();
                 actorController.deleteActor(Integer.parseInt(actorId));
+
             }
             if (optionActor.equals("5")) {
                 System.out.println("Insert actor id: ");
@@ -111,7 +112,8 @@ public static void main(String[] args) {
             }
             if (Integer.parseInt(optionDirector) == 4) {
                 System.out.println("Insert director id: ");
-                int directorId = scanner.nextInt();
+                String Id = scanner.nextLine();
+                int directorId = Integer.parseInt(Id);
                 directorController.deleteDirector(directorId);
             }
         }
@@ -135,12 +137,14 @@ public static void main(String[] args) {
             }
             if (Integer.parseInt(optionMovie) == 4) {
                 System.out.println("Insert movie id: ");
-                int movieId = scanner.nextInt();
+                String id = scanner.nextLine();
+                int movieId = Integer.parseInt(id);
                 movieController.deleteMovie(movieId);
             }
             if (Integer.parseInt(optionMovie) == 5) {
                 System.out.println("Insert movie id: ");
-                int movieId = scanner.nextInt();
+                String id = scanner.nextLine();
+                int movieId = Integer.parseInt(id);
                 System.out.println("Insert rating: ");
                 String rating = scanner.nextLine();
                 movieController.updateRating(movieId, rating);
@@ -165,7 +169,8 @@ public static void main(String[] args) {
             }
             if (Integer.parseInt(optionGenre) == 4) {
                 System.out.println("Insert genre id: ");
-                int genreId = scanner.nextInt();
+                String Id = scanner.nextLine();
+                int genreId = Integer.parseInt(Id);
                 genresController.deleteGenre(genreId);
             }
         }
@@ -189,7 +194,8 @@ public static void main(String[] args) {
             }
             if (Integer.parseInt(optionClient) == 4) {
                 System.out.println("Insert client id: ");
-                int clientId = scanner.nextInt();
+                String Id = scanner.nextLine();
+                int clientId = Integer.parseInt(Id);
                 clientController.deleteClient(clientId);
             }
         }
@@ -214,15 +220,18 @@ public static void main(String[] args) {
             }
             if (Integer.parseInt(optionMemberClient) == 4) {
                 System.out.println("Insert member client id: ");
-                int memberClientId = scanner.nextInt();
+                String id = scanner.nextLine();
+                int memberClientId = Integer.parseInt(id)-1;
                 memberClientController.deleteMemberClient(memberClientId);
             }
             if (Integer.parseInt(optionMemberClient) == 5) {
                 System.out.println("Insert member client id: ");
-                int memberClientId = scanner.nextInt();
+                String id = scanner.nextLine();
+                int memberClientId = Integer.parseInt(id);
                 MemberClient member = memberClientController.getMemberClient(memberClientId);
                 System.out.println("Insert no points: ");
-                int noPoints = scanner.nextInt();
+                String points = scanner.nextLine();
+                int noPoints = Integer.parseInt(points);
                 memberClientController.updateNoPoints(member, noPoints);
             }
 
@@ -247,7 +256,8 @@ public static void main(String[] args) {
             }
             if (Integer.parseInt(optionTicket) == 4) {
                 System.out.println("Insert ticket id: ");
-                int ticketId = scanner.nextInt();
+                String id = scanner.nextLine();
+                int ticketId = Integer.parseInt(id);
                 ticketController.deleteTicket(ticketId);
             }
         }
@@ -271,7 +281,8 @@ public static void main(String[] args) {
             }
             if (Integer.parseInt(optionTheater) == 4) {
                 System.out.println("Insert theater id: ");
-                int theaterId = scanner.nextInt();
+                String id = scanner.nextLine();
+                int theaterId = Integer.parseInt(id);
                 theaterController.deleteTheater(theaterId);
             }
 
@@ -280,7 +291,7 @@ public static void main(String[] args) {
         if (Integer.parseInt(option) == 9) {
             System.out.println("Enter the name of the table: ");
             String table = scanner.nextLine();
-            System.out.println("Enter the action (create, insert, select, delete, update, drop): ");
+            System.out.println("Enter the action (create, insert, select, selectord, delete, update, drop): ");
             String action = scanner.nextLine();
             switch (action.toLowerCase()) {
                 case "create":
@@ -317,6 +328,9 @@ public static void main(String[] args) {
                     break;
                 case "drop":
                     dbContext.DropTable(con, table);
+                    break;
+                case "selectord":
+                    dbContext.selectOrderedTable(con, table);
                     break;
                 default:
                     System.out.println("Invalid action.");

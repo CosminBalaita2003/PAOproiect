@@ -29,12 +29,14 @@ public class ClientRepo {
     }
 
 
-    public boolean deleteClient(int clientId) {
-        if (clientId < clients.size()) {
-            clients.remove(clientId);
-            return true;
+    public ArrayList<Client> deleteClient(int clientId) {
+        for (Client client : clients) {
+            if (client.getClientId() == clientId) {
+                clients.remove(client);
+                return clients;
+            }
         }
-        return false;
+        return null;
     }
 
 

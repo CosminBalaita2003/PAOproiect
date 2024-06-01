@@ -49,12 +49,15 @@ public class MovieController {
         return movieService.getAllMovies();
     }
 
-    public void deleteMovie(int movieId) {
-        movieService.deleteMovie(movieId);
-    }
 
     public void updateRating(int id, String rating) {
         movieService.updateRating(id, rating);
+    }
+
+    public ArrayList<Movie> deleteMovie(int movieId) {
+        ArrayList<Movie> movies = movieService.deleteMovie(movieId);
+        System.out.println("Movie deleted");
+        return movies;
     }
 }
 

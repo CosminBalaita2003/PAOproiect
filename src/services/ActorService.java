@@ -62,10 +62,9 @@ public class ActorService {
     }
 
 
-    public boolean deleteActor(int actorId){
+    public ArrayList<Actor> deleteActor(int actorId){
         return actorRepo.deleteActor(actorId);
     }
-
 
 
 }

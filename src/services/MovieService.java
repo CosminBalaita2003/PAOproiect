@@ -30,7 +30,8 @@ public class MovieService {
         Director director = new Director(name,"","",true);
 
         System.out.println("Enter the duration of the movie: ");
-        int duration = scanner.nextInt();
+        String d = scanner.nextLine();
+        int duration = Integer.parseInt(d);
         System.out.println("Enter the rating of the movie: ");
         String rating = scanner.nextLine();
         Movie movie = new Movie(title, genres, director, duration, rating);
@@ -54,7 +55,7 @@ public class MovieService {
         return movieRopo.getAllMovies();
     }
 
-    public boolean deleteMovie(int movieId){
+    public ArrayList<Movie> deleteMovie(int movieId){
         return movieRopo.deleteMovie(movieId);
     }
 

@@ -3,6 +3,7 @@ package services;
 import Repo.DirectorRepo;
 import models.Director;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DirectorService {
@@ -55,7 +56,7 @@ public class DirectorService {
         return false;
     }
 
-    public boolean deleteDirector(int directorId){
+    public ArrayList<Director> deleteDirector(int directorId){
         return directorRepo.deleteDirector(directorId);
     }
 

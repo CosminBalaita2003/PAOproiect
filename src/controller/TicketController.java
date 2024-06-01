@@ -1,6 +1,9 @@
 package controller;
 
+import models.Ticket;
 import services.TicketService;
+
+import java.util.ArrayList;
 
 public class TicketController {
 
@@ -36,9 +39,11 @@ public class TicketController {
         ticketService.getAllTickets();
     }
 
-    public void deleteTicket(int ticketId) {
-        ticketService.deleteTicket(ticketId);
-    }
 
+    public ArrayList<Ticket> deleteTicket(int ticketId) {
+        ArrayList<Ticket> tickets = ticketService.deleteTicket(ticketId);
+        System.out.println("Ticket deleted");
+        return tickets;
+    }
 
 }

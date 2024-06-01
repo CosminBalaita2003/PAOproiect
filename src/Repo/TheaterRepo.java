@@ -26,12 +26,12 @@ public class TheaterRepo {
         return theaters;
     }
 
-    public boolean deleteTheater(int theaterId) {
+    public ArrayList<Theater> deleteTheater(int theaterId) {
         if (theaterId < theaters.size()) {
             theaters.remove(theaterId);
-            return true;
+            return theaters;
         }
-        return false;
+        return null;
     }
 
     public boolean updateTheaterCapacity(Theater theater, String noSeats) {

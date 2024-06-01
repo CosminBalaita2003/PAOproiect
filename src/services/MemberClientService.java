@@ -3,6 +3,7 @@ package services;
 import Repo.MemberClientRepo;
 import models.MemberClient;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MemberClientService {
@@ -45,7 +46,7 @@ int noPoints = scanner.nextInt();
         }
     }
 
-    public boolean deleteMemberClient(int memberClientId){
+    public ArrayList<MemberClient> deleteMemberClient(int memberClientId){
         return memberClientRepo.deleteMemberClient(memberClientId);
     }
 

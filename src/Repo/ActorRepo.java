@@ -32,14 +32,15 @@ public class ActorRepo {
         return true;
     }
 
-    public boolean deleteActor(int actorId) {
-        if (actorId < actors.size()) {
-            actors.remove(actorId);
-            return true;
+    public ArrayList<Actor> deleteActor(int actorId) {
+        for (Actor actor : actors) {
+            if (actor.getActorid() == actorId) {
+                actors.remove(actor);
+                return actors;
+            }
         }
-        return false;
+        return null;
     }
-
     public ArrayList<Actor> getActorsByFirstName(String firstName) {
         ArrayList<Actor> listaactor = new ArrayList<>();
         for (Actor actor : actors) {

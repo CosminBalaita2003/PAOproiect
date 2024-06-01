@@ -30,11 +30,12 @@ public class TicketRepo {
         return true;
     }
 
-    public boolean deleteTicket(int ticketId) {
+    public ArrayList<Ticket> deleteTicket(int ticketId) {
         if (ticketId < tickets.size()) {
             tickets.remove(ticketId);
-            return true;
+            return tickets;
         }
-        return false;
+        return null;
     }
+
 }

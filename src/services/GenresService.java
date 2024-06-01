@@ -3,6 +3,7 @@ package services;
 import Repo.GenresRepo;
 import models.Genres;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GenresService {
@@ -32,7 +33,7 @@ public class GenresService {
         return genresRepo.getGenre(genreId);
     }
 
-    public boolean deleteGenre(int genreId){
+    public ArrayList<Genres> deleteGenre(int genreId){
         return genresRepo.deleteGenre(genreId);
     }
 

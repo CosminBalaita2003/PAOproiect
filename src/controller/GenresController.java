@@ -1,6 +1,9 @@
 package controller;
 
+import models.Genres;
 import services.GenresService;
+
+import java.util.ArrayList;
 
 public class GenresController {
 
@@ -35,8 +38,10 @@ public class GenresController {
         genresService.getAllGenres();
     }
 
-    public void deleteGenre(int genreId){
-        genresService.deleteGenre(genreId);
+    public ArrayList<Genres> deleteGenre(int genreId){
+        ArrayList<Genres> genres = genresService.deleteGenre(genreId);
+        System.out.println("Genre deleted");
+        return genres;
     }
 
 
