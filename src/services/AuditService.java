@@ -22,7 +22,9 @@ public class AuditService {
        String path_to_file = "src/files/activityLog.csv";
        try (FileWriter writer = new FileWriter(path_to_file, true)) {
            long timestamp = System.currentTimeMillis();
-           writer.write(action + "," + timestamp + "\n");
+           writer.write(STR."""
+\{action},\{timestamp}
+""");
        }
     }
 }

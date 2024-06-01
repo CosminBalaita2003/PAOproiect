@@ -13,12 +13,15 @@ public class ActorRepo {
     }
 
     public Actor getActor(int actorId) {
-        System.out.println(actorId + " " + actors.size());
-        if (actorId < actors.size()) {
-            return actors.get(actorId);
+//        System.out.println(actorId + " size " + actors.size());
+        for (Actor actor : actors) {
+            if (actor.getActorid() == actorId) {
+                return actor;
+            }
         }
         return null;
     }
+
 
     public ArrayList<Actor> getAllActors() {
         return actors;
@@ -35,6 +38,26 @@ public class ActorRepo {
             return true;
         }
         return false;
+    }
+
+    public ArrayList<Actor> getActorsByFirstName(String firstName) {
+        ArrayList<Actor> listaactor = new ArrayList<>();
+        for (Actor actor : actors) {
+            if (actor.getFirstName().equalsIgnoreCase(firstName)) {
+                listaactor.add(actor);
+            }
+            if (!listaactor.isEmpty()) {
+                return listaactor;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Actor> makeAllActorsAlive() {
+        for (Actor actor : actors) {
+            actor.setAlive(true);
+        }
+        return actors;
     }
 
 

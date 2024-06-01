@@ -16,8 +16,10 @@ public class ClientRepo {
 
     public Client getClient(int clientId) {
         System.out.println(clientId + " " + clients.size());
-        if (clientId < clients.size()) {
-            return clients.get(clientId);
+        for (Client client : clients) {
+            if (client.getClientId() == clientId) {
+                return client;
+            }
         }
         return null;
     }

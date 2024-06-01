@@ -16,8 +16,10 @@ public class MovieRopo {
 
     public Movie getMovie(int movieId) {
         System.out.println(movieId + " " + movies.size());
-        if (movieId < movies.size()) {
-            return movies.get(movieId);
+        for (Movie movie : movies) {
+            if (movie.getMovieId() == movieId) {
+                return movie;
+            }
         }
         return null;
     }

@@ -53,6 +53,15 @@ public class ActorService {
         return false;
     }
 
+    public ArrayList<Actor> getActorsByFirstName(String firstName){
+        return actorRepo.getActorsByFirstName(firstName);
+    }
+
+    public ArrayList<Actor> makeAllActorsAlive(){
+        return actorRepo.makeAllActorsAlive();
+    }
+
+
     public boolean deleteActor(int actorId){
         return actorRepo.deleteActor(actorId);
     }

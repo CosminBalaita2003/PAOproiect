@@ -34,13 +34,38 @@ public class ActorController {
 
     public Actor getActor(int ind){
         Actor actor = actorService.getActor(ind);
+        System.out.println("Actor found");
+        System.out.println(STR."\{actor.getFirstName()} \{actor.getLastName()} \{actor.getBirthDate()} \{actor.isAlive()}");
         return actor;
     }
 
     public ArrayList<Actor> getAllActors(){
+        ArrayList<Actor> actors = actorService.getAllActors();
+        System.out.println("All actors found");
+        for (Actor actor : actors) {
+            System.out.println(actor.getFirstName() + " " + actor.getLastName() + " " + actor.getBirthDate() + " " + actor.isAlive());
+        }
+
         return actorService.getAllActors();
     }
 
+    public ArrayList<Actor> getActorsByFirstName(String firstName){
+        ArrayList<Actor> actors = actorService.getActorsByFirstName(firstName);
+        System.out.println("Actors found by first name");
+        for (Actor actor : actors) {
+            System.out.println(actor.getFirstName() + " " + actor.getLastName() + " " + actor.getBirthDate() + " " + actor.isAlive());
+        }
+        return actors;
+    }
+
+    public ArrayList<Actor> makeAllActorsAlive(){
+        ArrayList<Actor> actors = actorService.makeAllActorsAlive();
+        System.out.println("All actors are alive");
+        for (Actor actor : actors) {
+            System.out.println(actor.getFirstName() + " " + actor.getLastName() + " " + actor.getBirthDate() + " " + actor.isAlive());
+        }
+        return actors;
+    }
     public boolean updateStatus(int ind, boolean alive){
         actorService.updateStatus(ind, alive);
         return true;

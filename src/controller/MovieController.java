@@ -1,6 +1,9 @@
 package controller;
 
+import models.Movie;
 import services.MovieService;
+
+import java.util.ArrayList;
 
 public class MovieController {
     private static MovieController instance;
@@ -27,12 +30,23 @@ public class MovieController {
         System.out.println("Movie added");
     }
 
-    public void getMovie(int movieId) {
-        movieService.getMovie(movieId);
+    public Movie getMovie(int movieId) {
+        System.out.println("Movie found");
+        Movie movie = movieService.getMovie(movieId);
+        System.out.println(movie.getTitle() + " " + movie.getGenre() + " " + movie.getDirector() + " " + movie.getDuration() + " " + movie.getRating());
+
+
+        return movie;
     }
 
-    public void getAllMovies() {
-        movieService.getAllMovies();
+    public ArrayList<Movie> getAllMovies() {
+        ArrayList<Movie> movies = movieService.getAllMovies();
+        System.out.println("All movies found");
+        for (Movie movie : movies) {
+            System.out.println(movie.getTitle() + " " + movie.getGenre() + " " + movie.getDirector() + " " + movie.getDuration() + " " + movie.getRating());
+        }
+
+        return movieService.getAllMovies();
     }
 
     public void deleteMovie(int movieId) {

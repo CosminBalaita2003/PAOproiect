@@ -5,6 +5,7 @@ import models.Director;
 import models.Genres;
 import models.Movie;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MovieService {
@@ -46,10 +47,11 @@ public class MovieService {
 
     }
 
-    public void getAllMovies(){
+    public ArrayList<Movie> getAllMovies(){
         for (Movie movie : movieRopo.getAllMovies()) {
             System.out.println(movie.getTitle());
         }
+        return movieRopo.getAllMovies();
     }
 
     public boolean deleteMovie(int movieId){
