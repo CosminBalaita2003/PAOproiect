@@ -25,6 +25,10 @@ public class MemberClientController
         return instance;
     }
 
+    public void addMemberClient(MemberClient memberClient){
+        memberClientService.addMemberClient(memberClient);
+        System.out.println("Member Client added");
+    }
     public void addMemberClient(){
         memberClientService.addMemberClient();
         System.out.println("Member Client added");

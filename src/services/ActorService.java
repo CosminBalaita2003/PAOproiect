@@ -14,6 +14,10 @@ public class ActorService {
         this.actorRepo = new ActorRepo();
     }
 
+    public Actor addActor(Actor actor){
+        actorRepo.addActor(actor);
+        return actor;
+    }
     public Actor addActor(){
         AuditService auditService = new AuditService();
         Scanner scanner = new Scanner(System.in);

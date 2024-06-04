@@ -24,7 +24,10 @@ public class GenresController {
         }
         return instance;
     }
-
+    public void addGenre(Genres genre){
+        genresService.addGenre(genre);
+        System.out.println("Genre added");
+    }
     public void addGenre(){
         genresService.addGenre();
         System.out.println("Genre added");

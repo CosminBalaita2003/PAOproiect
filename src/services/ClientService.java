@@ -15,7 +15,10 @@ public class ClientService {
     public ClientService(){
         clientRepo = new ClientRepo();
     }
-
+    public Client addClient(Client client){
+        clientRepo.addClient(client);
+        return client;
+    }
     public Client addClient(){
         AuditService auditService = new AuditService();
         Scanner scanner = new Scanner(System.in);

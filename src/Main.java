@@ -1,6 +1,6 @@
 import controller.*;
 import database.DbContext;
-import models.MemberClient;
+import models.*;
 
 import java.sql.Connection;
 import java.util.Scanner;
@@ -27,6 +27,34 @@ public static void main(String[] args) {
     TicketController ticketController = TicketController.getInstance();
     TheaterController theaterController = TheaterController.getInstance();
 
+    for (int i = 0; i < 10; i++) {
+        actorController.addActor(new Actor("Actor" + i, "Actor" + i, "01-01-2000", true));
+    }
+    for (int i = 0; i < 10; i++) {
+        directorController.addDirector(new Director("Director" + i, "Director" + i, "01-01-2000",true));
+    }
+    for (int i = 0; i < 10; i++) {
+        Genres genre = new Genres("Genre" + i);
+        Director director = new Director("Director" + i,"Director" + i,"01-01-2000",true);
+        movieController.addMovie(new Movie("Movie" + i, genre, director, 120, "10"));
+    }
+    for (int i = 0; i < 10; i++) {
+        genresController.addGenre(new Genres("Genre" + i));
+    }
+    for (int i = 0; i < 10; i++) {
+        clientController.addClient(new Client("Client" + i, "Client" + i,"Client"+i+"@ymail.com", "01-01-2000"));
+    }
+    for (int i = 0; i < 10; i++) {
+        memberClientController.addMemberClient(new MemberClient("MemberClient" + i, "MemberClient" + i, "MemberClient" + i + "@yahoo.com", "01-01-2000", 0));
+    }
+    for (int i = 0; i < 10; i++) {
+        Theater theater = new Theater( "100");
+        theaterController.addTheater(theater);
+    }
+    for (int i = 0; i < 10; i++) {
+        Ticket ticket = new Ticket(i,i, "01-01-2000", "10");
+        ticketController.addTicket(ticket);
+    }
     System.out.println("Cinema:");
     Scanner scanner = new Scanner(System.in);
     String option;

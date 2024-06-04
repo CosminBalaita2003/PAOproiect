@@ -25,7 +25,10 @@ public class TicketController {
         }
         return instance;
     }
-
+    public void addTicket(Ticket ticket) {
+        ticketService.addTicket(ticket);
+        System.out.println("Ticket added");
+    }
     public void addTicket() {
         ticketService.addTicket();
         System.out.println("Ticket added");

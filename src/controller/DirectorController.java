@@ -25,7 +25,10 @@ public class DirectorController {
         }
         return instance;
     }
-
+    public void addDirector(Director director){
+        directorService.addDirector(director);
+        System.out.println("Director added");
+    }
     public void addDirector(){
         directorService.addDirector();
         System.out.println("Director added");

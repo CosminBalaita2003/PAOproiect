@@ -13,7 +13,10 @@ public class MemberClientService {
     public MemberClientService(){
         memberClientRepo = new MemberClientRepo();
     }
-
+    public MemberClient addMemberClient(MemberClient memberClient){
+        memberClientRepo.addMemberClient(memberClient);
+        return memberClient;
+    }
     public void addMemberClient(){
        AuditService auditService = new AuditService();
         Scanner scanner = new Scanner(System.in);

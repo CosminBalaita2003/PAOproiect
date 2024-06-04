@@ -24,14 +24,18 @@ public static TheaterController getInstance() {
         }
         return instance;
     }
-
+    public void addTheater(Theater theater) {
+        theaterService.addTheater(theater);
+        System.out.println("Theatre added");
+    }
     public void addTheater() {
         theaterService.addTheater();
         System.out.println("Theatre added");
     }
 
-    public void getTheater(int theatreId) {
+    public Theater getTheater(int theatreId) {
         theaterService.getTheater(theatreId);
+        return theaterService.getTheater(theatreId);
     }
 
     public void getAllTheaters() {

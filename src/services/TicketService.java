@@ -14,6 +14,10 @@ public class TicketService {
         this.ticketRepo = new TicketRepo();
     }
 
+    public Ticket addTicket(Ticket ticket){
+        ticketRepo.addTicket(ticket);
+        return ticket;
+    }
     public Ticket addTicket(){
         AuditService auditService = new AuditService();
         Scanner scanner = new Scanner(System.in);

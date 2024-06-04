@@ -13,7 +13,10 @@ public class TheaterService {
     public TheaterService(){
         this.theaterRepo = new TheaterRepo();
     }
-
+    public Theater addTheater(Theater theater){
+        theaterRepo.addTheater(theater);
+        return theater;
+    }
     public Theater addTheater() {
         AuditService auditService = new AuditService();
         Scanner scanner = new Scanner(System.in);

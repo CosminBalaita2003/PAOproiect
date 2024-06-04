@@ -14,6 +14,10 @@ public class DirectorService {
         this.directorRepo = new DirectorRepo();
     }
 
+    public Director addDirector(Director director){
+        directorRepo.addDirector(director);
+        return director;
+    }
     public Director addDirector(){
         AuditService auditService = new AuditService();
         Scanner scanner = new Scanner(System.in);

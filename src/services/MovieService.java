@@ -16,6 +16,10 @@ public class MovieService {
         this.movieRopo = new MovieRopo();
     }
 
+    public Movie addMovie(Movie movie){
+        movieRopo.addMovie(movie);
+        return movie;
+    }
     public Movie addMovie(){
         AuditService auditService = new AuditService();
         Scanner scanner = new Scanner(System.in);

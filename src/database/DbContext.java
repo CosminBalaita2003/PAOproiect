@@ -153,21 +153,25 @@ public class DbContext {
                     System.out.println("Last Name: " + input.getString("lastname"));
                     System.out.println("Birth Date: " + input.getDate("birthdate"));
                     System.out.println("Alive: " + input.getBoolean("alive"));
+                    System.out.println("----------------------------------------------");
                 } else if (tableName.equalsIgnoreCase("movie")) {
                     System.out.println("Movie ID: " + input.getInt("movieid"));
                     System.out.println("Title: " + input.getString("title"));
                     System.out.println("Release Date: " + input.getDate("release_date"));
                     System.out.println("Duration: " + input.getInt("duration"));
                     System.out.println("Genre: " + input.getString("genre"));
+                    System.out.println("----------------------------------------------");
                 }  else if (tableName.equalsIgnoreCase("genre")) {
                     System.out.println("Genre ID: " + input.getInt("genreid"));
                     System.out.println("Name: " + input.getString("name"));
+                    System.out.println("----------------------------------------------");
                 } else if (tableName.equalsIgnoreCase("director")) {
                     System.out.println("Director ID: " + input.getInt("directorid"));
                     System.out.println("First Name: " + input.getString("firstname"));
                     System.out.println("Last Name: " + input.getString("lastname"));
                     System.out.println("Birth Date: " + input.getDate("birthdate"));
                     System.out.println("Alive: " + input.getBoolean("alive"));
+                    System.out.println("----------------------------------------------");
                 }
             }
             System.out.println("Values selected successfully");
@@ -244,6 +248,7 @@ public class DbContext {
                     System.out.println("Last Name: " + input.getString("lastname"));
                     System.out.println("Birth Date: " + input.getDate("birthdate"));
                     System.out.println("Alive: " + input.getBoolean("alive"));
+                    System.out.println("----------------------------------------------");
 
             }
             }
@@ -258,6 +263,7 @@ public class DbContext {
                     System.out.println("Release Date: " + input.getDate("release_date"));
                     System.out.println("Duration: " + input.getInt("duration"));
                     System.out.println("Genre: " + input.getString("genre"));
+                    System.out.println("----------------------------------------------");
                 }
             }
             else if (tableName.equalsIgnoreCase("genre"))
@@ -268,6 +274,7 @@ public class DbContext {
                 {
                     System.out.println("Genre ID: " + input.getInt("genreid"));
                     System.out.println("Name: " + input.getString("name"));
+                    System.out.println("----------------------------------------------");
                 }
             }
             else if (tableName.equalsIgnoreCase("director"))
@@ -281,6 +288,7 @@ public class DbContext {
                     System.out.println("Last Name: " + input.getString("lastname"));
                     System.out.println("Birth Date: " + input.getDate("birthdate"));
                     System.out.println("Alive: " + input.getBoolean("alive"));
+                    System.out.println("----------------------------------------------");
                 }
             }
         }catch (SQLException e){

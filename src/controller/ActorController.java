@@ -26,6 +26,11 @@ public class ActorController {
         return instance;
     }
 
+    public Actor addActor(Actor actor){
+        actorService.addActor(actor);
+        System.out.println("Actor added");
+        return actor;
+    }
     public Actor addActor(){
        Actor actor = actorService.addActor();
         System.out.println("Actor added");

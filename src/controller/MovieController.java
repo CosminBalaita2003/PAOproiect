@@ -24,7 +24,10 @@ public class MovieController {
         }
         return instance;
     }
-
+    public void addMovie(Movie movie) {
+        movieService.addMovie(movie);
+        System.out.println("Movie added");
+    }
     public void addMovie() {
         movieService.addMovie();
         System.out.println("Movie added");

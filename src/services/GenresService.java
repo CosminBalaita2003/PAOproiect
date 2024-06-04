@@ -14,6 +14,10 @@ public class GenresService {
         this.genresRepo = new GenresRepo();
     }
 
+    public Genres addGenre(Genres genre){
+        genresRepo.addGenre(genre);
+        return genre;
+    }
     public Genres addGenre(){
         AuditService auditService = new AuditService();
         Scanner scanner = new Scanner(System.in);

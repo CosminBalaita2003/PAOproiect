@@ -24,7 +24,11 @@ public class ClientController {
         }
         return instance;
     }
-
+    public Client addClient(Client client){
+        clientService.addClient(client);
+        System.out.println("Client added");
+        return client;
+    }
     public Client addClient(){
         Client client = clientService.addClient();
         System.out.println("Client added");
